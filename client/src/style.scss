@@ -1,0 +1,17 @@
+.circle {
+    border-radius: 40px;
+    width: 80px;
+    height: 80px;
+    border: 2px solid white;
+    transform: translate(-50%, -50%);
+    background-color: rgba(white, 0.1);
+    position: absolute;
+}
+
+.dg.ac {
+    z-index: 3;
+}
+
+controls-element {
+    transition: all 0.8 ease-out;
+}

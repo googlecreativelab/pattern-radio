@@ -1,0 +1,5 @@
+google-cloud-spanner==1.9.0
+google-cloud-pubsub==0.41.0
+google-cloud-storage==1.16.0
+python-json-logger==0.1.11
+pydub==0.23.0

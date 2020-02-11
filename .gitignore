@@ -1,0 +1,15 @@
+*.pyc
+.DS_Store
+service-account.json
+.eslintrc.js
+*.sublime-project
+*.sublime-workspace
+node_modules/
+client/build
+spectrogram/build
+/.vscode
+render_installation/png
+.history/
+kubernetes/tools/average_image/test/
+kubernetes/tools/average_image/images/
+kubernetes/tools/classifier_clustering/out.svg
