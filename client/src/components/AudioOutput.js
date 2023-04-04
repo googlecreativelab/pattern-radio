@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Tone, { Gain, Compressor } from 'tone'
+import * as Tone from 'tone'
 import { noiseCanceller } from './AudioNoiseCancelling'
 
-export const audioOutput = new Gain(Tone.dbToGain(30)).connect(noiseCanceller)
-// export const audioOutput = new Gain(Tone.dbToGain(30)).toMaster()
-// Tone.connectSeries(
+export const audioOutput = new Tone.Gain(Tone.dbToGain(30)).connect(noiseCanceller)
+// export const audioOutput = new Tone.Gain(Tone.dbToGain(30)).toDestination()
+// Tone.Destination.chain(
 // 	audioOutput,
 // 	noiseCanceller,
 // )

@@ -59,6 +59,7 @@ class CommentMarkdownElement extends LitElement {
                     const key = anchorMatch[1]
                     a.onclick = () => {
                         Globals.spectrogram.annotationLayer.navigateToCommentAnchor(key)
+                        return false
                     }
                 } else {
                     a.target = '_blank'

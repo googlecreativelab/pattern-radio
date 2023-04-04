@@ -13,14 +13,15 @@
 // limitations under the License.
 
 import Tone, { Buffer, BufferSource } from 'tone'
+import { ToneAudioBuffer, ToneBufferSource } from 'tone'
+import * as Tone from 'tone'
 import { audioOutput } from './AudioOutput'
 
 const playingAudio = []
 
 /**
  *
- * const audio = new Audio('https://path/to/file.mp3', 1423823918750)
- *
+ * const audio = new Audio('https://path/to/file.mp3', 1423823918750) *
  * audio.sync(time: ms, playing: boolean, duration: (length of segment))
  * Audio.testStops(this.time)
  *
@@ -77,7 +78,7 @@ export class Audio {
 
         // this._audioElement.src =
         // this._audioElement.crossOrigin = 'anonymous'
-        this._buffer = await Buffer.fromUrl(src)
+        this._buffer = await ToneAudioBuffer.fromUrl(src)
 
         // console.timeEnd('loading')
 
@@ -124,15 +125,12 @@ export class Audio {
 
         if (0 <= offset && offset <= this._buffer.duration * 1000) {
             if (!this.playing && playing) {
-                this._source = new BufferSource({
-                    buffer: this._buffer,
+                this._source = new ToneBufferSource({
+                    url: this._buffer,
                     fadeIn: 0.01,
                     fadeOut: 0.4,
-                    onended() {
-                        this._source = null
-                    },
                 }).connect(audioOutput)
-                this._source.start(Tone.now(), offset / 1000).toMaster()
+                this._source.start(Tone.now(), offset / 1000).toDestination()
                 playingAudio.push(this)
                 this.playing = true
             }

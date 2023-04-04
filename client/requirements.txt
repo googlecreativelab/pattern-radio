@@ -1,0 +1,4 @@
+flask==2.0.1
+redis==3.5.3
+redislite==5.0.165407
+requests==2.26.0

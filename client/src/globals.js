@@ -67,9 +67,7 @@ export const Config = {
     spectrogramOffset: 25,
     scalePadding: 5,
     fullscreenAspect: 3 / 1,
-    apiPath: cache
-        ? 'https://ci-dot-gweb-deepblue.appspot.com/api/'
-        : 'https://us-central1-gweb-deepblue.cloudfunctions.net/',
+    apiPath: cache ? '/api/' : 'https://us-central1-gweb-deepblue.cloudfunctions.net/',
     time: parseFloat(queryParams.time) || null,
     skipIntro: !!(queryParams.position || queryParams.duration || anchorParams.position || queryParams.skipIntro),
     annotate: queryParams.liveAnnotations,

@@ -22,7 +22,7 @@ import * as TWEEN from '@tweenjs/tween.js'
 import { logScale, getLogPosition, clamp, scaleToRange, distance } from '../util/Math'
 import { dateToUTCDateTimeString, msToTime } from '../util/Date'
 import { TimeManager } from '../models/TimeManager'
-import Tone, { Synth } from 'tone'
+import * as Tone from 'tone'
 import { audioOutput } from '../components/AudioOutput'
 import './Annotate'
 import './Comment'
@@ -1240,7 +1240,7 @@ export class Controls extends LitElement {
 
     async playAudio() {
         // activate Tone
-        new Tone.Synth().connect(audioOutput).toMaster()
+        new Tone.Synth().connect(audioOutput).toDestination()
         await start()
         Globals.player.start()
         this.$$playButton.style.display = 'none'

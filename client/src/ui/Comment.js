@@ -190,7 +190,7 @@ export class Comment extends LitElement {
                             </button>
 
                             <button
-                                class="author-toggle${!Globals.controls.loaded ? ' disabled' : ''}"
+                                class="author-toggle"
                                 id="selected"
                                 @click=${(e) => {
                                     this.open = !this.open

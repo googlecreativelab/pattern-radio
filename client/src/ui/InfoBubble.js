@@ -120,7 +120,17 @@ export class InfoBubble extends LitElement {
     }
 
     get coords() {
-        return this._coords
+        let overrides = {}
+        if (this.$$container) {
+            // if infobubble is about to go off the right side of the screen,
+            // keep it snapped to the left side of the cursor.
+            var c = this.$$container.getBoundingClientRect()
+            if (this._coords.x + c.width > window.innerWidth) {
+                overrides.x = this._coords.x - c.width - 10
+            }
+        }
+
+        return Object.assign(this._coords, overrides)
     }
 
     render() {

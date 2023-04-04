@@ -173,6 +173,19 @@ export class Intro extends LitElement {
                 align-items: center;
             }
 
+            #tands {
+                color: white;
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                font-size: 14px;
+            }
+
+            #tands a,
+            #tands a:link {
+                color: white;
+            }
+
             .noaa {
                 height: 50px;
                 width: 50px;
@@ -252,6 +265,10 @@ export class Intro extends LitElement {
                     width: 100%;
                     left: 0;
                     justify-content: center;
+                }
+
+                #tands {
+                    top: 20px;
                 }
             }
 
@@ -688,6 +705,11 @@ export class Intro extends LitElement {
                             </svg>
                         </div>
                     </a>
+                </div>
+                <div id="tands">
+                    <a href="https://policies.google.com/privacy" target="_blank">Privacy</a> 
+                    &amp; 
+                    <a href="https://policies.google.com/terms" target="_blank">Terms</a>
                 </div>
             </div>
         `

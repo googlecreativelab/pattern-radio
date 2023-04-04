@@ -12,38 +12,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {getFiles} from '../network/Files'
-import Tone, {Buffer} from 'tone'
+import { getFiles } from '../network/Files'
+import { Buffer } from 'tone'
+import * as Tone from 'tone'
 import toWav from 'audiobuffer-to-wav'
 
 /**
  * Export the audio files in a selected range
  */
-export async function exportAudio(location, startTime, duration){
-	const files = await getFiles(location, startTime, duration)
-	const prefix = 'https://storage.googleapis.com/deepblue-transcoded-audio/'
-	const audioBuffers = await Promise.all(files.map(f => Buffer.fromUrl(prefix + f.filename)))
-	const sampleRate = Tone.context.sampleRate
-	const outputBuffer = Tone.context.createBuffer(1, ((endTime - startTime) / 1000) * sampleRate, sampleRate)
-	const outputData = outputBuffer.getChannelData(0)
-	let arrayPosition = 0
-	console.log(startTime - files[0].startTime)
-	audioBuffers.forEach((buffer, index) => {
-		const startOffset = Math.max(((startTime - files[index].startTime) / 1000) * sampleRate, 0)
-		const addedSamples = buffer.getChannelData(0).length - startOffset
-		outputBuffer.copyToChannel(buffer.getChannelData(0).subarray(startOffset), 0, arrayPosition)
-		arrayPosition += addedSamples
-	})
-	const filename = `${location}_${startTime}_${endTime}`
-	const wave = toWav(outputBuffer)
-	const blob = new Blob([wave], { type: "audio/wav" });
-	const blobUrl = window.URL.createObjectURL(blob);
-	const a = document.createElement("a");
-	//download all the files
-	a.href = blobUrl;
-	a.download = filename;
-	a.click();
-	window.URL.revokeObjectURL(blobUrl);
+export async function exportAudio(location, startTime, duration) {
+    const files = await getFiles(location, startTime, duration)
+    const prefix = 'https://storage.googleapis.com/deepblue-transcoded-audio/'
+    const audioBuffers = await Promise.all(files.map((f) => Buffer.fromUrl(prefix + f.filename)))
+    const sampleRate = Tone.context.sampleRate
+    const outputBuffer = Tone.context.createBuffer(1, ((endTime - startTime) / 1000) * sampleRate, sampleRate)
+    const outputData = outputBuffer.getChannelData(0)
+    let arrayPosition = 0
+    console.log(startTime - files[0].startTime)
+    audioBuffers.forEach((buffer, index) => {
+        const startOffset = Math.max(((startTime - files[index].startTime) / 1000) * sampleRate, 0)
+        const addedSamples = buffer.getChannelData(0).length - startOffset
+        outputBuffer.copyToChannel(buffer.getChannelData(0).subarray(startOffset), 0, arrayPosition)
+        arrayPosition += addedSamples
+    })
+    const filename = `${location}_${startTime}_${endTime}`
+    const wave = toWav(outputBuffer)
+    const blob = new Blob([wave], { type: 'audio/wav' })
+    const blobUrl = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    //download all the files
+    a.href = blobUrl
+    a.download = filename
+    a.click()
+    window.URL.revokeObjectURL(blobUrl)
 }
 
 // exportAudio('Hawaii19', 1422753662000, 120000)
