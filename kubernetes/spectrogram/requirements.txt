@@ -2,5 +2,5 @@ google-cloud-pubsub==0.41.0
 google-cloud-storage==1.16.0
 librosa==0.6.3
 pypng==0.0.19
-Pillow==9.1.1
+Pillow==10.0.1
 python-json-logger==0.1.11
